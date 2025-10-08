@@ -5,70 +5,70 @@ import { Camera, Sparkles, Check, Instagram, Send, Menu, X, ArrowRight, Star, Za
 // TU BASE DE DATOS COMPLETA DE PROMPTS
 // ===================================================================================
 const ALL_PROMPTS = [
-    { title: "Retrato de perfil B/N", src: "09ij0fdi32j9d8j32g34.jpg", prompt: `Ultra-realistic cinematic street fashion portrait...`, category: "hombre" },
-    { title: "Retrato de perfil B/N", src: "gewrgerg443g5g.jpg", prompt: `Cinematic urban portrait at dusk...`, category: "hombre" },
-    { title: "Retrato de perfil B/N", src: "01338EE2-A333-4883-870E-96D3620A1BBA.jpg", prompt: `using the exact face from the provided selfie...`, category: "hombre" },
+    { title: "Retrato de perfil B/N", src: "09ij0fdi32j9d8j32g34.jpg", prompt: `Ultra-realistic cinematic street fashion portrait on a rainy London-style sidewalk...`, category: "hombre" },
+    { title: "Retrato de perfil B/N", src: "gewrgerg443g5g.jpg", prompt: `Cinematic urban portrait at dusk in front of a modern stone building entrance...`, category: "hombre" },
+    { title: "Retrato de perfil B/N", src: "01338EE2-A333-4883-870E-96D3620A1BBA.jpg", prompt: `using the exact face from the provided selfie — no editing, no retouching...`, category: "hombre" },
     { title: "Foto en pareja 2", src: "t2gf3gvr87y7.jpg", prompt: `A stylish indoor editorial portrait of a couple...`, category: "pareja" },
-    { title: "Retrato de perfil", src: "gfdh455634g43.jpg", prompt: `Ultra-realistic cinematic streetwear portrait...`, category: "hombre" },
-    { title: "Retrato de perfil", src: "k76kkj546j4h45.jpg", prompt: `Ultra-realistic cinematic street portrait...`, category: "hombre" },
-    { title: "Perro con dona", src: "t5y453eyjytj56j56.jpg", prompt: `Ultra-realistic comic studio portrait of a dog...`, category: "mascotas" },
-    { title: "Retrato de perfil", src: "u656uhg4g4g4.jpg", prompt: `Ultra-realistic editorial street portrait...`, category: "hombre" },
+    { title: "Retrato de perfil", src: "gfdh455634g43.jpg", prompt: `Ultra-realistic cinematic streetwear portrait in a cool-toned city street...`, category: "hombre" },
+    { title: "Retrato de perfil", src: "k76kkj546j4h45.jpg", prompt: `Ultra-realistic cinematic street portrait taken in a bustling downtown avenue at sunset...`, category: "hombre" },
+    { title: "Perro con dona", src: "t5y453eyjytj56j56.jpg", prompt: `Ultra-realistic comic studio portrait of a dog mid-action...`, category: "mascotas" },
+    { title: "Retrato de perfil", src: "u656uhg4g4g4.jpg", prompt: `Ultra-realistic editorial street portrait in a modern urban plaza...`, category: "hombre" },
     { title: "Perro de cumpleaños", src: "y453ey54yh54h4h4354h.jpg", prompt: `Ultra-realistic playful outdoor dog birthday scene...`, category: "mascotas" },
     { title: "Perro con chaqueta de cuero", src: "t43g34g34g34yh534.jpg", prompt: `Ultra-realistic studio portrait with seamless dark background...`, category: "mascotas" },
     { title: "Perros a la moda", src: "gherh453h45.jpg", prompt: `Ultra-realistic studio fashion portrait of stylish animals...`, category: "mascotas" },
-    { title: "Perro con sudadera amarilla", src: "43t43tg34g34h45h54.jpg", prompt: `Ultra-realistic studio portrait of a pet...`, category: "mascotas" },
+    { title: "Perro con sudadera amarilla", src: "43t43tg34g34h45h54.jpg", prompt: `Ultra-realistic studio portrait of a pet sitting on the floor...`, category: "mascotas" },
     { title: "Perra de princesa", src: "hfdgh54y54hbtrhrt.jpg", prompt: `Ultra-realistic luxury birthday portrait of a pet...`, category: "mascotas" },
-    { title: "Perro con manta roja", src: "g43guky7kyukghfjd.jpg", prompt: `Ultra-realistic intimate portrait of a dog...`, category: "mascotas" },
-    { title: "Perro en la oscuridad", src: "ghfrtth646545h4.jpg", prompt: `Ultra-realistic monochrome portrait of a dog...`, category: "mascotas" },
-    { title: "Freddy Krueger", src: "jknf2i3u9i892f38jff23.jpg", prompt: `Ultra-realistic cinematic horror portrait...`, category: "halloween" },
+    { title: "Perro con manta roja", src: "g43guky7kyukghfjd.jpg", prompt: `Ultra-realistic intimate portrait of a dog wrapped in a deep burgundy...`, category: "mascotas" },
+    { title: "Perro en la oscuridad", src: "ghfrtth646545h4.jpg", prompt: `Ultra-realistic monochrome portrait of a dog partially hidden...`, category: "mascotas" },
+    { title: "Freddy Krueger", src: "jknf2i3u9i892f38jff23.jpg", prompt: `Ultra-realistic cinematic horror portrait in a dark studio...`, category: "halloween" },
     { title: "El Sombrerero", src: "hr54e3h45h4h45555.jpg", prompt: `Ultra-realistic portrait of a whimsical tea-party character...`, category: "halloween" },
-    { title: "Harley Quinn", src: "r3223ffdswfsdgfgge3.jpg", prompt: `Ultra-realistic cinematic portrait of a character...`, category: "halloween" },
+    { title: "Harley Quinn", src: "r3223ffdswfsdgfgge3.jpg", prompt: `Ultra-realistic cinematic portrait of a character inspired by a rebellious comic anti-hero...`, category: "halloween" },
     { title: "Catrina hombre", src: "ghgjuh65342r543.jpg", prompt: `Ultra-realistic portrait of a person in a dark, ornate suit...`, category: "halloween" },
-    { title: "Familia Addams", src: "435t34gf4g34g43gg3.jpg", prompt: `Ultra-realistic cinematic portrait replicating the exact scene...`, category: "pareja" },
+    { title: "Familia Addams", src: "435t34gf4g34g43gg3.jpg", prompt: `Ultra-realistic cinematic portrait replicating the exact scene of a gothic couple...`, category: "pareja" },
     { title: "Retrato halloween 1", src: "89Y3742EHJFIOH322OIHF3E.jpg", prompt: `Ultra-realistic cinematic portrait of a distressed clown...`, category: "halloween" },
-    { title: "Retrato de estudio profesional", src: "3C9358F7-D303-4F73-8072-072EB8338AA7.jpg", prompt: `Ultra-realistic professional studio portrait...`, category: "hombre" },
-    { title: "Retrato en B/N con gafas de sol", src: "70637C95-07A5-4A5E-837A-B84612724715.jpg", prompt: `ultra-realistic portrait of a person...`, category: "hombre" },
-    { title: "Retrato en B/N", src: "19F959ED-077D-4C02-93D5-F00CC4187432.jpg", prompt: `ultra-realistic black and white portrait...`, category: "hombre" },
-    { title: "Retrato cinematografico en el mar", src: "775CF221-A62C-4619-B45F-B1B771D0CAFE.jpg", prompt: `A person standing waist-deep in turbulent sea water...`, category: "hombre" },
+    { title: "Retrato de estudio profesional", src: "3C9358F7-D303-4F73-8072-072EB8338AA7.jpg", prompt: `Ultra-realistic professional studio portrait, using the exact face...`, category: "hombre" },
+    { title: "Retrato en B/N con gafas de sol", src: "70637C95-07A5-4A5E-837A-B84612724715.jpg", prompt: `ultra-realistic portrait of a person, using the exact face from the provided selfie...`, category: "hombre" },
+    { title: "Retrato en B/N", src: "19F959ED-077D-4C02-93D5-F00CC4187432.jpg", prompt: `ultra-realistic black and white portrait of a middle-aged subject...`, category: "hombre" },
+    { title: "Retrato cinematografico en el mar", src: "775CF221-A62C-4619-B45F-B1B771D0CAFE.jpg", prompt: `A person standing waist-deep in turbulent sea water, wearing a wet, semi-transparent...`, category: "hombre" },
     { title: "Retrato B/N con sombras", src: "96A05973-F466-4CC6-8AF7-A5F0A0CEDB1B.jpg", prompt: `You are a professional photography studio assistant...`, category: "hombre" },
     { title: "Foto de perfil profesional", src: "C9322E23-3D12-40DF-82AE-3478DC157F99.jpg", prompt: `Portrait of a person in a clean editorial studio setup...`, category: "hombre" },
     { title: "Retrato perfil profesional", src: "C9697CBB-E76C-4424-94A2-F53893968DC4.jpg", prompt: `Ultra-realistic black-and-white portrait using the exact face...`, category: "hombre" },
-    { title: "Retrato cinematografico B/N con gafas de sol", src: "ChatGPT-Image-30-jul-2025,-12_19_33.jpg", prompt: `Ultra-realistic portrait of a person, set inside a metallic elevator...`, category: "hombre" },
+    { title: "Retrato cinematografico B/N con gafas de sol", src: "ChatGPT-Image-30-jul-2025,-12_19_33.jpg", prompt: `Ultra-realistic portrait of a person, using the exact face...`, category: "hombre" },
     { title: "Retrato mujer blanco y negro", src: "3r2f2f232ffffasd.jpg", prompt: `Ultra-realistic black and white portrait set indoors...`, category: "mujer" },
     { title: "Retrato Mujer apoyada", src: "32r4u23h9f238yh23f.jpg", prompt: `Ultra-realistic editorial studio portrait of a person sitting...`, category: "mujer" },
     { title: "Fotografia mujer en playa", src: "43gdshdsfa3245.jpg", prompt: `Ultra-realistic cinematic portrait of a person standing at the seaside...`, category: "mujer" },
     { title: "Retrato mujer reflejo", src: "21421RF1FE2FF2F.jpg", prompt: `Ultra-realistic cinematic portrait in a minimal dark studio...`, category: "mujer" },
     { title: "Retrato mujer ciudad", src: "3r123err126u5657ui.jpg", prompt: `Ultra-realistic cinematic street portrait on an overcast day...`, category: "mujer" },
-    { title: "Retrato con mascota", src: "74E5837C-B1AA-4C23-AE43-FC68FFBF3615.jpg", prompt: `A playful studio portrait of a person laughing...`, category: "mascotas" },
+    { title: "Retrato con mascota", src: "74E5837C-B1AA-4C23-AE43-FC68FFBF3615.jpg", prompt: `A playful studio portrait of a person laughing openly...`, category: "mascotas" },
     { title: "Foto perro motero", src: "3r522tgyg2g34g43.jpg", prompt: `ultra-realist — A motorcyclist with a rugged presence...`, category: "mascotas" },
     { title: "Foto cinematica con mascota", src: "5312greg432g324.jpg", prompt: `Ultra-realistic vertical 9:16 night rooftop portrait...`, category: "mascotas" },
-    { title: "Retrato con mascota", src: "f232f23f23f232rfh.jpg", prompt: `Ultra-realistic vertical 9:16 studio portrait...`, category: "mascotas" },
+    { title: "Retrato con mascota", src: "f232f23f23f232rfh.jpg", prompt: `Ultra-realistic vertical 9:16 studio portrait on pure black...`, category: "mascotas" },
     { title: "Retrato con mascota", src: "42145gfedws32.jpg", prompt: `Ultra-realistic A cinematic low-key medium portrait...`, category: "mascotas" },
-    { title: "Foto pefil fondo blanco PROMPT", src: "fsqa12fds21hbgfd.jpg", prompt: `Ultra-realistic black-and-white studio portrait...`, category: "hombre" },
+    { title: "Foto pefil fondo blanco PROMPT", src: "fsqa12fds21hbgfd.jpg", prompt: `Ultra-realistic black-and-white studio portrait of a person...`, category: "hombre" },
     { title: "Foto Piscina Esmoquin", src: "rg233rfvewfewwe.jpg", prompt: `Ultra-realistic luxury editorial portrait in a night-time swimming pool...`, category: "hombre" },
     { title: "Retrato neon rojo", src: "t345tg3g3g.jpg", prompt: `Ultra-realistic cinematic portrait of a person in an extreme close-up...`, category: "hombre" },
     { title: "Retrato calle London", src: "1231312dgd465ujh4.jpg", prompt: `Ultra-realistic cinematic street portrait in a narrow European city street...`, category: "hombre" },
     { title: "Retrato aro neon azul", src: "43tg3g3g3g3g.jpg", prompt: `Ultra-realistic studio portrait of a man in 3/4 profile view...`, category: "hombre" },
-    { title: "Retrato luz cenital", src: "0E58B7C4-A726-4F48-AFF0-910A81BB21C9.jpg", prompt: `Ultra-realistic black-and-white portrait...`, category: "hombre" },
-    { title: "Foto de estudio", src: "6464533gtgfdsg.jpg", prompt: `A hyper-realistic vertical half-body portrait...`, category: "hombre" },
+    { title: "Retrato luz cenital", src: "0E58B7C4-A726-4F48-AFF0-910A81BB21C9.jpg", prompt: `Ultra-realistic black-and-white portrait using the exact face...`, category: "hombre" },
+    { title: "Foto de estudio", src: "6464533gtgfdsg.jpg", prompt: `A hyper-realistic vertical half-body portrait of a person...`, category: "hombre" },
     { title: "Foto de estudio tattoo", src: "y654364g5g3454u7.jpg", prompt: `Hyper-realistic editorial portrait with a nearly black background...`, category: "hombre" },
     { title: "Retrato cinematografico con vehículo", src: "BA06D8BF-A42C-44F7-8D45-4EE31841EA4D.jpg", prompt: `Ultra-cinematic long-exposure poster-style composition...`, category: "hombre" },
     { title: "hombre redes sociales", src: "982h31iiuhg128yhg2j1hf.jpg", prompt: `A realistic man with identical proportions...`, category: "hombre" },
     { title: "Retrato profesional lujoso", src: "EC06BC62-E654-4CBE-847B-2D9738859025.jpg", prompt: `Produce a luxurious rooftop portrait at golden hour...`, category: "hombre" },
     { title: "Retrato Blanco y negro", src: "22763199-D14F-4747-B7BE-38A23D38BA3C-2.jpg", prompt: `Black and white portrait of a person sitting on a chair...`, category: "hombre" },
-    { title: "Retrato peaky blinders", src: "bfrr432532f23yhh3.jpg", prompt: `A cinematic noir-style waist-up portrait...`, category: "hombre" },
-    { title: "Retrato Blanco y negro", src: "iuhjih21ibhnndb1ujujsa.jpg", prompt: `Hyperrealistic black and white portrait...`, category: "hombre" },
-    { title: "Retrato Blanco y negro", src: "uh12iuh2ui1h21gg12hygb21.jpg", prompt: `Black-and-white portrait of a confident man...`, category: "hombre" },
+    { title: "Retrato peaky blinders", src: "bfrr432532f23yhh3.jpg", prompt: `A cinematic noir-style waist-up portrait in black and white...`, category: "hombre" },
+    { title: "Retrato Blanco y negro", src: "iuhjih21ibhnndb1ujujsa.jpg", prompt: `Hyperrealistic black and white portrait, subject wearing dark suit...`, category: "hombre" },
+    { title: "Retrato Blanco y negro", src: "uh12iuh2ui1h21gg12hygb21.jpg", prompt: `Black-and-white portrait of a confident man wearing a mustard-yellow hoodie...`, category: "hombre" },
     { title: "Retrato estudio sudadera", src: "gfh4453gf34g34gg.jpg", prompt: `Ultra-realistic extreme close-up monochrome portrait photo...`, category: "hombre" },
     { title: "Retrato estudio sudadera", src: "F669182A-378D-481D-8705-EFF953EC505F.jpg", prompt: `Portrait of a confident man seated in a studio...`, category: "hombre" },
-    { title: "Retrato estudio sudadera", src: "fh435g3h3g43g3g44.jpg", prompt: `Ultra-realistic editorial portrait of a person...`, category: "hombre" },
+    { title: "Retrato estudio sudadera", src: "fh435g3h3g43g3g44.jpg", prompt: `Ultra-realistic editorial portrait of a person, using the exact face...`, category: "hombre" },
     { title: "Retrato cinematografico aparcamiento", src: "fwef232f3232f.jpg", prompt: `Ultra-realistic cinematic portrait photo of a person...`, category: "hombre" },
-    { title: "Perfil redes sociales Mujer", src: "ui12hiuh29h12eh12fd12.jpg", prompt: `A confident woman leaning against the side...`, category: "mujer" },
-    { title: "Retrato elegante aeropuerto", src: "Hombre-elegante-al-atardecer-en-aeropuerto.jpg", prompt: `Walking confidently on a private airport runway...`, category: "hombre" },
-    { title: "Retrato fondo rojo", src: "IMG_6026.jpg", prompt: `Ultra-realistic studio portrait...`, category: "hombre" },
-    { title: "Retrato cinematografico en poligono", src: "Imagen de WhatsApp 2025-07-04 a las 03.08.29_598dc3e3.jpg", prompt: `Create a hyper-realistic, high-resolution (8K) cinematic portrait...`, category: "hombre" },
+    { title: "Perfil redes sociales Mujer", src: "ui12hiuh29h12eh12fd12.jpg", prompt: `A confident woman leaning against the side of a giant vertical smartphone...`, category: "mujer" },
+    { title: "Retrato elegante aeropuerto", src: "Hombre-elegante-al-atardecer-en-aeropuerto.jpg", prompt: `Walking confidently on a private airport runway at golden hour...`, category: "hombre" },
+    { title: "Retrato fondo rojo", src: "IMG_6026.jpg", prompt: `Ultra-realistic studio portrait, using the exact face...`, category: "hombre" },
+    { title: "Retrato cinematografico en poligono", src: "Imagen de WhatsApp 2025-07-04 a las 03.08.29_598dc3e3.jpg", prompt: `Create a hyper-realistic, high-resolution (8K) cinematic portrait of me...`, category: "hombre" },
     { title: "Retrato sillón Ozzy", src: "oikjnn213q9oiuerhj1239oiujni.jpg", prompt: `A gothic cinematic portrait: a person seated on a tall black leather throne...`, category: "hombre" },
-    { title: "Retrato en pareja B/N", src: "Retrato-en-blanco-y-negro-de-pareja.jpg", prompt: `Couple posing in a photography studio...`, category: "pareja" },
+    { title: "Retrato en pareja B/N", src: "Retrato-en-blanco-y-negro-de-pareja.jpg", prompt: `Couple posing in a photography studio with a dark plain backdrop...`, category: "pareja" },
     { title: "Retrato Gato", src: "7171nu187drf.jpg", prompt: `A studio portrait of a subject dressed as a medieval king...`, category: "mascotas" }
 ].map(p => ({ ...p, id: p.src, src: `/${p.src}`, prompt: (p.prompt || '').replace(/\s+/g, ' ').trim() }));
 
@@ -95,16 +95,20 @@ const PORTRAIT_PACKS = [
 ];
 
 const PRESETS = [
-    { id: 1, name: "Cinematográfico Editorial", subtitle: "Low-Key Rembrandt", free: true, promptBlock: "Ultra-realistic editorial portrait, 85mm f/1.4, Rembrandt lighting..." },
-    { id: 2, name: "Golden Hour Lifestyle", subtitle: "Cálido atardecer", free: true, promptBlock: "Warm golden hour portrait, 50mm f/1.8, backlight with golden reflector..." },
-    { id: 3, name: "Corporate Clean", subtitle: "High-Key profesional", free: true, promptBlock: "High-key professional headshot, 85mm f/2.2, large frontal key with diffusers..." },
-    { id: 4, name: "Environmental Portrait 35mm", subtitle: "Sujeto en su entorno", free: false, promptBlock: "Environmental portrait, 35mm f/2, subject in natural setting..." },
-    { id: 5, name: "Beauty Soft Front", subtitle: "Beauty homogéneo", free: false, promptBlock: "Beauty portrait, 100mm macro or 85mm f/2, centered beauty dish..." },
-    { id: 6, name: "B/N Clásico Film", subtitle: "Monocromo atemporal", free: false, promptBlock: "Classic black and white portrait, 85mm f/2, soft Loop or Rembrandt lighting..." }
+    { id: 1, name: "Cinematográfico Editorial", subtitle: "Low-Key Rembrandt", free: true, promptBlock: "Ultra-realistic editorial portrait, 85mm f/1.4, Rembrandt lighting with soft key at 45° left elevated, fill 1.5 stops lower, WB 5400K, 4:5 vertical, charcoal to black gradient backdrop, gentle S-curve, fine film grain, natural skin texture." },
+    { id: 2, name: "Golden Hour Lifestyle", subtitle: "Cálido atardecer", free: true, promptBlock: "Warm golden hour portrait, 50mm f/1.8, backlight with golden reflector front fill, WB 6000-6500K, 3:2 or 4:5, warm bokeh background, split-toning warm highlights, natural glow." },
+    { id: 3, name: "Corporate Clean", subtitle: "High-Key profesional", free: true, promptBlock: "High-key professional headshot, 85mm f/2.2, large frontal key with diffusers, white seamless background, WB 5200K, 1:1 or 4:5, low clarity, natural skin, no halos, LinkedIn quality." },
+    { id: 4, name: "Environmental Portrait 35mm", subtitle: "Sujeto en su entorno", free: false, promptBlock: "Environmental portrait, 35mm f/2, subject in natural setting, side natural light with fill, WB 5200-5600K, 3:2 horizontal, soft curve, micro-contrast enhancement." },
+    { id: 5, name: "Beauty Soft Front", subtitle: "Beauty homogéneo", free: false, promptBlock: "Beauty portrait, 100mm macro or 85mm f/2, centered beauty dish with subtle fill, WB 5000-5200K, 4:5 or 1:1, real skin texture, no plastic look, magazine beauty standard." },
+    { id: 6, name: "B/N Clásico Film", subtitle: "Monocromo atemporal", free: false, promptBlock: "Classic black and white portrait, 85mm f/2, soft Loop or Rembrandt lighting, monochrome conversion, 4:5 vertical, S-curve contrast, 400 ISO film grain texture, timeless look." }
 ];
 
 // --- Componentes de la UI ---
-const AnimatedSection = ({ children, className }) => <div className={className}>{children}</div>;
+
+const AnimatedSection = ({ children, className }) => {
+    // Para simplificar, quitamos la lógica de IntersectionObserver que puede dar problemas
+    return <div className={className}>{children}</div>;
+};
 
 const PromptCard = ({ item }) => (
     <div className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 transform hover:-translate-y-2 transition-transform duration-300">
@@ -133,7 +137,7 @@ const PromptModal = ({ item, onClose, onCopy }) => {
     if (!item) return null;
     const [copied, setCopied] = useState(false);
 
-    const handleCopy = () => {
+    const handleLocalCopy = () => {
         onCopy(item.prompt);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
@@ -150,7 +154,7 @@ const PromptModal = ({ item, onClose, onCopy }) => {
                     <textarea readOnly value={item.prompt} className="w-full flex-grow bg-black/50 border border-white/10 rounded-lg p-3 text-gray-300 text-sm resize-none focus:ring-2 focus:ring-cyan-500"></textarea>
                     <div className="flex gap-4">
                         <button onClick={onClose} className="w-full py-3 rounded-full font-bold bg-white/10 text-white hover:bg-white/20 transition-all duration-300">Cerrar</button>
-                        <button onClick={handleCopy} className={`w-full py-3 rounded-full font-bold transition-all duration-300 ${copied ? 'bg-green-500 text-white' : 'bg-gradient-to-r from-green-400 to-cyan-500 text-black hover:shadow-lg hover:shadow-cyan-500/20'}`}>
+                        <button onClick={handleLocalCopy} className={`w-full py-3 rounded-full font-bold transition-all duration-300 ${copied ? 'bg-green-500 text-white' : 'bg-gradient-to-r from-green-400 to-cyan-500 text-black hover:shadow-lg hover:shadow-cyan-500/20'}`}>
                             {copied ? '¡Copiado!' : 'Copiar Prompt'}
                         </button>
                     </div>
@@ -159,7 +163,6 @@ const PromptModal = ({ item, onClose, onCopy }) => {
         </div>
     );
 };
-
 
 // ===================================================================================
 // COMPONENTE PRINCIPAL DE LA APLICACIÓN
@@ -187,7 +190,7 @@ export default function App() {
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
             }
-        }, 100); // Pequeño delay para asegurar que el DOM está listo
+        }, 100);
     };
 
     const filteredGalleryPrompts = galleryFilter === 'todos'
@@ -276,7 +279,7 @@ export default function App() {
                             </div>
                         </div>
                     </section>
-                    
+
                     <section id="planes" className="py-24 px-4">
                         <div className="max-w-7xl mx-auto">
                             <AnimatedSection className="text-center mb-16">
@@ -353,9 +356,9 @@ export default function App() {
                                             <div className="absolute inset-0 bg-black/70 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center z-10 p-4 text-center">
                                                 <Lock className="w-10 h-10 text-purple-400 mx-auto mb-4" />
                                                 <p className="text-white font-bold text-lg mb-2">Plan PRO Requerido</p>
-                                                <a href="#planes" onClick={() => navigateToHome('#planes')} className="text-purple-400 hover:text-purple-300 text-sm font-semibold">
+                                                <button onClick={() => navigateToHome('#planes')} className="text-purple-400 hover:text-purple-300 text-sm font-semibold">
                                                     Ver planes →
-                                                </a>
+                                                </button>
                                             </div>
                                         )}
                                         <div className="flex items-start justify-between mb-4">
