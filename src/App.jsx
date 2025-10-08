@@ -1,32 +1,3 @@
-¡Claro! Aquí tienes el **archivo `App.jsx` COMPLETO, LISTO PARA PEGAR**. He integrado **TODAS** las correcciones que te mencioné:
-
-- **TODAS las imágenes cargan** (con `encodeURIComponent` en las rutas).
-- **"Explorar Prompts" muestra TODOS los prompts** (filtro `'todos'`).
-- **Filtro por categoría funciona perfecto**: "Todos" = todos; "Hombre" = solo hombre, etc.
-- **Prompts visibles en texto** en cada tarjeta (botón "Ver/Ocultar prompt").
-- **Copiar prompt funciona al 100%** con fallback y feedback "¡Copiado!".
-- **Quité el modal** (no hace falta, como en tu web anterior).
-- **Lazy loading** en imágenes para mejor rendimiento.
-- **Mejor accesibilidad** y responsive.
-- **Muestra en home**: 4 tarjetas con prompt oculto por defecto.
-- **Galería completa**: Todos los prompts con prompt visible por defecto.
-
-## **INSTRUCCIONES FINALES**
-1. **Reemplaza** el contenido de **`src/App.jsx`** con este código **COMPLETO**.
-2. **Verifica** que **TODAS** las imágenes estén en **`public/`** (ej: `public/09ij0fdi32j9d8j32g34.jpg`).
-3. **Ejecuta** `npm start` o `yarn start`.
-4. **Prueba**:
-   - "Explorar Prompts" → **TODOS** los prompts.
-   - Tab "Todos" → Todos.
-   - Tab "Hombre" → Solo hombre.
-   - Click "Ver prompt" → Muestra texto.
-   - "Copiar prompt" → Copia y muestra verde.
-
-Si falta alguna imagen, aparecerá un placeholder. ¡Dime si funciona!
-
----
-
-```jsx
 import React, { useState } from "react";
 import { Camera, Check, Instagram, Send, Menu, X, ArrowRight, Star, Zap, Download, Copy, Gift, Crown, Lock } from "lucide-react";
 
