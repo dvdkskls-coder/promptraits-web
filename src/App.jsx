@@ -1,5 +1,5 @@
-import React, a useState, useEffect, useRef } from "react";
-import { Camera, Sparkles, Check, Instagram, Send, Menu, X, ArrowRight, Star, Zap, Download, Copy, Users, Gift, Crown, Lock } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { Camera, Sparkles, Check, Instagram, Send, Menu, X, ArrowRight, Star, Zap, Download, Copy, Gift, Crown, Lock } from "lucide-react";
 
 // ===================================================================================
 // TU BASE DE DATOS COMPLETA DE PROMPTS
@@ -72,23 +72,16 @@ const ALL_PROMPTS = [
     { title: "Retrato Gato", src: "7171nu187drf.jpg", prompt: `A studio portrait of a subject dressed as a medieval king before the 15th century, seated with dignity on a plain floor against a seamless dark gray studio backdrop. The subject is wearing a mantle with a white-and-black fur collar, a deep red cape embroidered with metallic gold patterns in ornate medieval style, and a royal crown slightly hooked to one side. Using the exact face from the provided selfie — no editing, no retouching, no smoothing, preserving natural fur texture and expression. The lighting rig: a large softbox key light at 45° camera left, fill light 1.5 stops lower from camera right, and a very subtle rim light behind to create gentle contour, all balanced at 5500K. Camera: full-frame body with 85 mm lens, shot at about 2 meters, f/4, 1/125 s, ISO 200, white balance 5500K, eye-AF on the closest eye. Framing: vertical portrait 9:16, medium shot with centered composition. Post: high-dynamic-range, natural texture, no beauty filters. Ultra-realistic, professional photography, cinematic style`, category: "mascotas" }
 ].map(p => ({ ...p, id: p.src, src: `/${p.src}`, prompt: (p.prompt || '').replace(/\s+/g, ' ').trim() }));
 
+
 const CATEGORIES = [
-    { id: 'todos', name: 'Todos' },
-    { id: 'hombre', name: 'Hombre' },
-    { id: 'mujer', name: 'Mujer' },
-    { id: 'mascotas', name: 'Mascotas' },
-    { id: 'halloween', name: 'Halloween' },
-    { id: 'pareja', name: 'Parejas' }
+    { id: 'todos', name: 'Todos' }, { id: 'hombre', name: 'Hombre' }, { id: 'mujer', name: 'Mujer' }, { id: 'mascotas', name: 'Mascotas' }, { id: 'halloween', name: 'Halloween' }, { id: 'pareja', name: 'Parejas' }
 ];
 
-// NUEVA LÓGICA: Seleccionamos un prompt de cada categoría para la portada
 const CATEGORIES_FOR_HOME = ['hombre', 'mujer', 'mascotas', 'halloween'];
 const PROMPTS_FOR_HOME = CATEGORIES_FOR_HOME.map(category => {
     return ALL_PROMPTS.find(p => p.category === category);
-}).filter(Boolean); // .filter(Boolean) elimina resultados nulos si una categoría no tiene prompts
+}).filter(Boolean);
 
-
-// --- El resto de tus datos (Planes, Packs, etc.) ---
 const SUBSCRIPTION_PLANS = [
     { name: "FREE", price: "0", period: "Gratis siempre", popular: false, icon: <Gift className="w-6 h-6" />, features: ["Acceso a prompts públicos", "3 prompts exclusivos al mes", "Newsletter semanal", "Consejos y trucos IA"], gradient: "from-gray-700 to-gray-600" },
     { name: "PRO", price: "9.99", period: "/mes", popular: true, icon: <Zap className="w-6 h-6" />, features: ["Todo de FREE +", "5 prompts exclusivos al mes", "3 prompts personalizados", "Revisiones incluidas", "Entrega en 24h", "Soporte prioritario"], gradient: "from-blue-500 to-purple-600" },
@@ -100,19 +93,22 @@ const PORTRAIT_PACKS = [
     { name: "Pro", price: "59", popular: true, features: ["15 retratos profesionales", "3 estilos diferentes", "Entrega en 24h", "Revisiones incluidas"] },
     { name: "Premium", price: "99", features: ["30 retratos profesionales", "Todos los estilos", "Video animado incluido", "Entrega inmediata"] }
 ];
-// ... (Aquí iría la lista de PRESETS que ya teníamos)
+
+const PRESETS = [
+    // ... (Aquí va tu lista completa de presets)
+    { id: 1, name: "Cinematográfico Editorial", subtitle: "Low-Key Rembrandt", free: true, promptBlock: "Ultra-realistic editorial portrait..." },
+    { id: 10, name: "Fashion Edge", subtitle: "Hard Light moda", free: false, promptBlock: "Fashion edge portrait..." }
+];
+
 
 // --- Componentes de la UI ---
-
-const AnimatedSection = ({ children, className }) => {
-    return <div className={className}>{children}</div>;
-};
+const AnimatedSection = ({ children, className }) => <div className={className}>{children}</div>;
 
 const PromptCard = ({ item }) => (
     <div className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 transform hover:-translate-y-2 transition-transform duration-300">
-        <img src={item.src} alt={item.title} className="w-full h-80 object-cover" onError={(e) => { e.target.onerror = null; e.target.src="https://via.placeholder.com/400x500.png?text=Imagen+no+encontrada"; }} />
+        <img src={item.src} alt={item.title} className="w-full h-80 object-cover" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/400x500.png?text=Imagen+no+encontrada"; }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
-            <h3 className="font-bold text-lg p-6 w-full">{item.title}</h3>
+            <h3 className="font-bold text-lg p-6 w-full text-white">{item.title}</h3>
         </div>
         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
             <span className="text-white font-bold text-lg">Ver Prompt</span>
@@ -123,11 +119,8 @@ const PromptCard = ({ item }) => (
 const CategoryTabs = ({ selected, onSelect }) => (
     <div className="flex flex-wrap justify-center gap-3 mb-12">
         {CATEGORIES.map(cat => (
-            <button
-                key={cat.id}
-                onClick={() => onSelect(cat.id)}
-                className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${ selected === cat.id ? 'bg-white/10 text-white ring-2 ring-cyan-400' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white' }`}
-            >
+            <button key={cat.id} onClick={() => onSelect(cat.id)}
+                className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${selected === cat.id ? 'bg-white/10 text-white ring-2 ring-cyan-400' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'}`}>
                 {cat.name}
             </button>
         ))}
@@ -145,7 +138,7 @@ const PromptModal = ({ item, onClose, onCopy }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={onClose}>
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[100] p-4" onClick={onClose}>
             <div className="bg-[#111111] border border-white/10 rounded-2xl w-full max-w-4xl max-h-[90vh] grid md:grid-cols-2 gap-6 p-6" onClick={(e) => e.stopPropagation()}>
                 <div className="flex items-center justify-center bg-black rounded-lg overflow-hidden">
                     <img src={item.src} alt={item.title} className="w-full h-full object-contain max-h-[80vh]" />
@@ -165,6 +158,7 @@ const PromptModal = ({ item, onClose, onCopy }) => {
     );
 };
 
+
 // ===================================================================================
 // COMPONENTE PRINCIPAL DE LA APLICACIÓN
 // ===================================================================================
@@ -177,43 +171,95 @@ export default function App() {
     const handleCopy = (text) => {
         navigator.clipboard.writeText(text);
     };
-    
+
     const navigateToGallery = (filter = 'todos') => {
         setGalleryFilter(filter);
         setView('gallery');
         window.scrollTo(0, 0);
     };
+    
+    const navigateToHome = (hash) => {
+        setView('home');
+        // Usamos un timeout para que el DOM se actualice antes de hacer scroll
+        setTimeout(() => {
+            const element = document.querySelector(hash);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 0);
+    };
 
     const filteredGalleryPrompts = galleryFilter === 'todos'
         ? ALL_PROMPTS
         : ALL_PROMPTS.filter(p => p.category === galleryFilter);
-    
+
     return (
         <div className="min-h-screen bg-[#0D0D0D] text-gray-200 font-sans">
             <nav className="fixed top-0 w-full z-50 bg-[#0D0D0D]/80 backdrop-blur-lg border-b border-white/10">
-                 {/* ... (código del Nav, sin cambios significativos) ... */}
+                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex justify-between items-center h-20">
+                        <button onClick={() => setView('home')} className="flex items-center space-x-3">
+                            <Camera className="w-8 h-8 text-cyan-400" />
+                            <span className="text-xl font-bold tracking-wider">PROMPTRAITS</span>
+                        </button>
+                        <div className="hidden md:flex items-center space-x-8">
+                            <button onClick={() => navigateToGallery()} className="text-gray-300 hover:text-white transition duration-300">Explora Prompts</button>
+                            <button onClick={() => navigateToHome('#planes')} className="text-gray-300 hover:text-white transition duration-300">Planes</button>
+                            <button onClick={() => navigateToHome('#packs')} className="text-gray-300 hover:text-white transition duration-300">Servicios</button>
+                        </div>
+                         <div className="hidden md:flex items-center">
+                            <a href="#login" className="bg-white/10 text-white px-6 py-2 rounded-full font-semibold hover:bg-white/20 transition duration-300">Login</a>
+                        </div>
+                        <button className="md:hidden p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                            {mobileMenuOpen ? <X /> : <Menu />}
+                        </button>
+                    </div>
+                </div>
+                 {mobileMenuOpen && (
+                    <div className="md:hidden bg-[#111111] border-t border-white/10">
+                        <div className="px-4 py-4 space-y-4">
+                            <button onClick={() => { navigateToGallery(); setMobileMenuOpen(false); }} className="block text-gray-300 hover:text-white">Explora Prompts</button>
+                            <button onClick={() => { navigateToHome('#planes'); setMobileMenuOpen(false); }} className="block text-gray-300 hover:text-white">Planes</button>
+                            <button onClick={() => { navigateToHome('#packs'); setMobileMenuOpen(false); }} className="block text-gray-300 hover:text-white">Servicios</button>
+                            <a href="#login" className="block text-gray-300 hover:text-white">Login</a>
+                        </div>
+                    </div>
+                )}
             </nav>
 
-            {/* VISTA DE LA PORTADA */}
             {view === 'home' && (
                 <main>
                     <section className="relative pt-40 pb-24 px-4 overflow-hidden text-center">
-                        <h1 className="text-5xl md:text-7xl font-bold mb-6">
-                            Convierte tus Selfies en <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mt-2">Retratos Profesionales</span>
-                        </h1>
-                        <p className="text-lg text-gray-400 mb-10 max-w-3xl mx-auto">Accede a nuestra biblioteca de presets y solicita retratos personalizados.</p>
-                        {/* ... (Botones de acción del Hero) ... */}
+                       <AnimatedSection className="max-w-5xl mx-auto relative z-10">
+                          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tighter">
+                              Convierte tus Selfies en
+                              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mt-2">
+                              Retratos Profesionales
+                              </span>
+                          </h1>
+                          <p className="text-lg text-gray-400 mb-10 max-w-3xl mx-auto">
+                             Accede a nuestra biblioteca de presets profesionales, solicita retratos personalizados y eleva tu marca personal al siguiente nivel.
+                          </p>
+                          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                              <a href="/Promptraits_Guia_Completa_Prompts_y_Fotografia_v2.pdf" download className="inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:shadow-purple-500/20 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto">
+                                  <Download className="w-5 h-5" />
+                                  <span>Descargar Guía Completa PDF</span>
+                              </a>
+                               <button onClick={() => navigateToGallery()} className="inline-flex items-center justify-center space-x-2 bg-white/5 border border-white/10 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto">
+                                  <span>Explorar Prompts</span>
+                                  <ArrowRight className="w-5 h-5" />
+                              </button>
+                          </div>
+                      </AnimatedSection>
                     </section>
 
                     <section id="prompts-sample" className="py-24 px-4">
                         <div className="max-w-7xl mx-auto">
-                            <div className="text-center mb-16">
-                                <h2 className="text-4xl md:text-5xl font-bold mb-4">Últimos <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">Prompts Compartidos</span></h2>
-                                <p className="text-gray-400 text-lg">Una muestra de nuestro catálogo. Haz clic en una categoría para explorar la galería completa.</p>
-                            </div>
-
-                            <CategoryTabs selected={galleryFilter} onSelect={navigateToGallery} />
-
+                            <AnimatedSection className="text-center mb-16">
+                                <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tighter">Una Muestra de la Galería</h2>
+                                <p className="text-gray-400 text-lg max-w-2xl mx-auto">Una selección por categoría. Haz clic en un filtro para explorar la galería completa.</p>
+                            </AnimatedSection>
+                            <CategoryTabs selected={'todos'} onSelect={navigateToGallery} />
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                                 {PROMPTS_FOR_HOME.map(item => (
                                     <div key={item.id} onClick={() => setSelectedPrompt(item)} className="cursor-pointer">
@@ -221,36 +267,37 @@ export default function App() {
                                     </div>
                                 ))}
                             </div>
-                            
                             <div className="text-center mt-16">
-                                <button onClick={() => navigateToGallery()} className="inline-flex items-center space-x-2 bg-white/10 text-white px-8 py-4 rounded-full font-bold">
-                                    <span>Ver todos los prompts</span>
+                                <button onClick={() => navigateToGallery()} className="inline-flex items-center justify-center space-x-2 bg-white/10 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transform hover:scale-105 transition-all duration-300">
+                                    <span>Ver Galería Completa</span>
                                     <ArrowRight className="w-5 h-5" />
                                 </button>
                             </div>
                         </div>
                     </section>
                     
-                    {/* AQUÍ VAN TUS OTRAS SECCIONES: PLANES, PACKS, PRESETS, ETC. */}
-                    {/* Las he omitido aquí para no hacer el código gigante, pero en tu App.jsx deben estar */}
                     <section id="planes" className="py-24 px-4">
-                         {/* ... Tu sección de planes ... */}
+                        {/* Aquí va el JSX de tu sección de Planes */}
                     </section>
+
                      <section id="packs" className="py-24 px-4 bg-black/20">
-                         {/* ... Tu sección de packs ... */}
+                        {/* Aquí va el JSX de tu sección de Packs */}
+                    </section>
+                    
+                     <section id="presets" className="py-24 px-4">
+                        {/* Aquí va el JSX de tu sección de Presets */}
                     </section>
                 </main>
             )}
 
-            {/* VISTA DE LA GALERÍA COMPLETA */}
             {view === 'gallery' && (
                 <main className="pt-32 px-4">
                      <section id="full-gallery" className="py-12">
                         <div className="max-w-7xl mx-auto">
-                            <div className="text-center mb-16">
+                            <AnimatedSection className="text-center mb-16">
                                 <h2 className="text-4xl md:text-5xl font-bold mb-4">Galería de <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">Prompts</span></h2>
                                 <p className="text-gray-400 text-lg">Navega, copia y aprende de nuestra colección completa.</p>
-                            </div>
+                            </AnimatedSection>
                             <CategoryTabs selected={galleryFilter} onSelect={setGalleryFilter} />
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                                 {filteredGalleryPrompts.map(item => (
@@ -267,7 +314,9 @@ export default function App() {
             <PromptModal item={selectedPrompt} onClose={() => setSelectedPrompt(null)} onCopy={handleCopy} />
             
             <footer className="bg-black/20 border-t border-white/10 py-12 px-4 mt-20">
-                <p className="text-center text-gray-600">© {new Date().getFullYear()} Promptraits by Sr. Waly. Todos los derechos reservados.</p>
+                 <div className="max-w-7xl mx-auto text-center">
+                     <p className="text-gray-600 text-sm">© {new Date().getFullYear()} Promptraits by Sr. Waly. Todos los derechos reservados.</p>
+                 </div>
             </footer>
         </div>
     );
