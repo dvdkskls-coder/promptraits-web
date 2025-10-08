@@ -70,7 +70,7 @@ const ALL_PROMPTS = [
     { title: "Retrato sillón Ozzy", src: "oikjnn213q9oiuerhj1239oiujni.jpg", prompt: `A gothic cinematic portrait: a person seated on a tall black leather throne...`, category: "hombre" },
     { title: "Retrato en pareja B/N", src: "Retrato-en-blanco-y-negro-de-pareja.jpg", prompt: `Couple posing in a photography studio with a dark plain backdrop...`, category: "pareja" },
     { title: "Retrato Gato", src: "7171nu187drf.jpg", prompt: `A studio portrait of a subject dressed as a medieval king...`, category: "mascotas" }
-].map(p => ({ ...p, id: p.src, src: `/${p.src}`, prompt: (p.prompt || '').replace(/\s+/g, ' ').trim() }));
+].map(p => ({ ...p, id: p.src, src: `/${encodeURIComponent(p.src)}`, prompt: (p.prompt || '').replace(/\s+/g, ' ').trim() }));
 
 
 const CATEGORIES = [
