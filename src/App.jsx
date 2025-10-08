@@ -12,7 +12,6 @@ import {
   Zap,
   Download,
   Copy,
-  Users,
   Gift,
   Crown,
   Lock,
